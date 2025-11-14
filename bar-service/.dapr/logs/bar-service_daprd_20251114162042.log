@@ -1,0 +1,92 @@
+Starting Dapr with id bar-service. HTTP Port: 3503. gRPC Port: 63052
+Updating metadata for cliPID: 68619
+time="2025-11-14T16:20:42.075244+01:00" level=info msg="Starting Dapr Runtime -- version 1.16.2 -- commit 3c7722a8c5648354e24256993caf047bc8c80666" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.075275+01:00" level=info msg="Log level set to: info" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.075376+01:00" level=warning msg="mTLS is disabled. Skipping certificate request and tls validation" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.security type=log ver=1.16.2
+time="2025-11-14T16:20:42.075718+01:00" level=info msg="Enabled features: SchedulerReminders" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.075764+01:00" level=info msg="metric spec: {\"enabled\":true}" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.diagnostics type=log ver=1.16.2
+time="2025-11-14T16:20:42.075782+01:00" level=info msg="Using default latency distribution buckets: [1 2 3 4 5 6 8 10 13 16 20 25 30 40 50 65 80 100 130 160 200 250 300 400 500 650 800 1000 2000 5000 10000 20000 50000 100000]" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.diagnostics type=log ver=1.16.2
+time="2025-11-14T16:20:42.075846+01:00" level=warning msg="The default value for 'spec.metric.http.increasedCardinality' will change to 'false' in Dapr 1.15 or later" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.diagnostics type=log ver=1.16.2
+time="2025-11-14T16:20:42.076226+01:00" level=info msg="standalone mode configured" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.076264+01:00" level=info msg="app id: bar-service" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.076364+01:00" level=info msg="metrics server started on 0.0.0.0:63053/" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.076422+01:00" level=info msg="Dapr trace sampler initialized: ParentBased{root:AlwaysOnSampler,remoteParentSampled:AlwaysOnSampler,remoteParentNotSampled:AlwaysOffSampler,localParentSampled:AlwaysOnSampler,localParentNotSampled:AlwaysOffSampler}" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.076677+01:00" level=info msg="local service entry announced: bar-service -> 192.168.179.36:63054" app_id=bar-service component="nr (mdns/v1)" instance=Mac.fritz.box scope=dapr.contrib type=log ver=1.16.2
+time="2025-11-14T16:20:42.07669+01:00" level=info msg="Initialized name resolution to mdns" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.076772+01:00" level=info msg="Loading components…" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.080592+01:00" level=info msg="Connected and received scheduler hosts addresses: [localhost:50006]" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.watchhosts type=log ver=1.16.2
+time="2025-11-14T16:20:42.080695+01:00" level=info msg="Scheduler client initialized for address: localhost:50006" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.clients type=log ver=1.16.2
+time="2025-11-14T16:20:42.080706+01:00" level=info msg="Scheduler clients initialized" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.clients type=log ver=1.16.2
+time="2025-11-14T16:20:42.081351+01:00" level=info msg="Component loaded: orderpubsub (pubsub.redis/v1)" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.processor type=log ver=1.16.2
+time="2025-11-14T16:20:42.0814+01:00" level=info msg="Waiting for all outstanding components to be processed…" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.084607+01:00" level=info msg="Using 'statestore' as actor state store" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.processor.state type=log ver=1.16.2
+time="2025-11-14T16:20:42.084645+01:00" level=info msg="Component loaded: statestore (state.redis/v1)" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.processor type=log ver=1.16.2
+time="2025-11-14T16:20:42.084654+01:00" level=info msg="All outstanding components processed" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.084662+01:00" level=info msg="Loading endpoints…" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.084907+01:00" level=info msg="Waiting for all outstanding http endpoints to be processed…" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.084916+01:00" level=info msg="All outstanding http endpoints processed" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.084922+01:00" level=info msg="Loading Declarative Subscriptions…" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.085294+01:00" level=info msg="gRPC server listening on TCP address: :63052" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.grpc.api type=log ver=1.16.2
+time="2025-11-14T16:20:42.085305+01:00" level=info msg="Enabled gRPC tracing middleware" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.grpc.api type=log ver=1.16.2
+time="2025-11-14T16:20:42.08531+01:00" level=info msg="Enabled gRPC metrics middleware" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.grpc.api type=log ver=1.16.2
+time="2025-11-14T16:20:42.085341+01:00" level=info msg="Registering workflow engine for gRPC endpoint: [::]:63052" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.grpc.api type=log ver=1.16.2
+time="2025-11-14T16:20:42.085362+01:00" level=info msg="API gRPC server is running on port 63052" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.08538+01:00" level=warning msg="The default value for 'spec.metric.http.increasedCardinality' will change to 'false' in Dapr 1.15 or later" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T16:20:42.08542+01:00" level=info msg="Enabled max body size HTTP middleware with size 4194304 bytes" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T16:20:42.085429+01:00" level=info msg="Enabled tracing HTTP middleware" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T16:20:42.085434+01:00" level=info msg="Enabled metrics HTTP middleware" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T16:20:42.085627+01:00" level=info msg="HTTP server listening on TCP address: :3503" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T16:20:42.085644+01:00" level=info msg="HTTP server is running on port 3503" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.085649+01:00" level=info msg="The request body size parameter is: 4194304 bytes" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.085682+01:00" level=info msg="gRPC server listening on TCP address: :63054" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.grpc.internal type=log ver=1.16.2
+time="2025-11-14T16:20:42.08569+01:00" level=info msg="Enabled gRPC tracing middleware" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.grpc.internal type=log ver=1.16.2
+time="2025-11-14T16:20:42.085695+01:00" level=info msg="Enabled gRPC metrics middleware" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.grpc.internal type=log ver=1.16.2
+time="2025-11-14T16:20:42.085721+01:00" level=info msg="Internal gRPC server is running on :63054" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.085728+01:00" level=info msg="application protocol: http. waiting on port 5003.  This will block until the app is listening on that port." app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.287655+01:00" level=info msg="application discovered on port 5003" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.287804+01:00" level=info msg="Using Scheduler service for reminders." app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actor.reminders.scheduler type=log ver=1.16.2
+time="2025-11-14T16:20:42.287861+01:00" level=info msg="Actor runtime started" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actor type=log ver=1.16.2
+time="2025-11-14T16:20:42.287887+01:00" level=info msg="worker started with backend dapr.actors/v1" app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T16:20:42.287879+01:00" level=warning msg="Graceful shutdown timeout is infinite, will wait indefinitely to shutdown" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actor type=log ver=1.16.2
+time="2025-11-14T16:20:42.287923+01:00" level=info msg="Workflow engine started" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.wfengine type=log ver=1.16.2
+time="2025-11-14T16:20:42.289094+01:00" level=info msg="Application configuration loaded" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.289853+01:00" level=info msg="app is subscribed to the following topics: [[bar-orders]] through pubsub=orderpubsub" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.processor.subscription type=log ver=1.16.2
+time="2025-11-14T16:20:42.291756+01:00" level=info msg="dapr initialized. Status: Running. Init Elapsed 215ms" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:20:42.291911+01:00" level=info msg="Scheduler stream connected for [JOB_TARGET_TYPE_JOB]" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T16:20:42.29193+01:00" level=info msg="Scheduler stream connected for [JOB_TARGET_TYPE_JOB]" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T16:20:42.291931+01:00" level=info msg="Reporting actor types: []" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement type=log ver=1.16.2
+time="2025-11-14T16:20:42.291949+01:00" level=info msg="Scheduler stream connected for [JOB_TARGET_TYPE_JOB]" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T16:20:42.292048+01:00" level=info msg="Connected to placement localhost:50005" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement.client.connector.static type=log ver=1.16.2
+time="2025-11-14T16:20:42.299547+01:00" level=info msg="Connected to placement localhost:50005" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement.client type=log ver=1.16.2
+time="2025-11-14T16:20:42.301105+01:00" level=info msg="Placement tables updated, version: 0" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement type=log ver=1.16.2
+time="2025-11-14T16:20:42.301133+01:00" level=info msg="Running actor reminder migration from state store to scheduler" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actors.reminders.migration type=log ver=1.16.2
+time="2025-11-14T16:20:42.301141+01:00" level=info msg="Skipping migration, no missing scheduler reminders found" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actors.reminders.migration type=log ver=1.16.2
+time="2025-11-14T16:20:42.301148+01:00" level=info msg="Found 0 missing scheduler reminders from state store" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actors.reminders.migration type=log ver=1.16.2
+time="2025-11-14T16:20:42.301162+01:00" level=info msg="Migrated 0 reminders from state store to scheduler successfully" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actors.reminders.migration type=log ver=1.16.2
+Updating metadata for app command: python app.py
+Updating metadata for appPID: 68653
+You're up and running! Dapr logs will appear here.
+
+time="2025-11-14T16:23:29.782724+01:00" level=info msg="Received signal 'interrupt'; beginning shutdown" app_id=bar-service instance=Mac.fritz.box scope=dapr.signals type=log ver=1.16.2
+time="2025-11-14T16:23:29.78312+01:00" level=info msg="orchestration-processor: worker stopped" app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T16:23:29.783155+01:00" level=info msg="activity-processor: worker stopped" app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T16:23:29.783175+01:00" level=info msg="Actor runtime shutting down" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actor type=log ver=1.16.2
+time="2025-11-14T16:23:29.78325+01:00" level=info msg="Scheduler stream disconnected" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T16:23:29.783261+01:00" level=info msg="backend stopping..." app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T16:23:29.78337+01:00" level=info msg="workers stopping and draining..." app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T16:23:29.783317+01:00" level=info msg="Scheduler stream disconnected" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T16:23:29.783373+01:00" level=error msg="Error communicating with placement: rpc error: code = Canceled desc = context canceled" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement.client type=log ver=1.16.2
+time="2025-11-14T16:23:29.783386+01:00" level=info msg="finished stopping and draining workers!" app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T16:23:29.783408+01:00" level=info msg="Workflow engine stopped" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.wfengine type=log ver=1.16.2
+time="2025-11-14T16:23:29.783393+01:00" level=info msg="Scheduler stream disconnected" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T16:23:29.783419+01:00" level=info msg="Actor runtime stopped" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actor type=log ver=1.16.2
+time="2025-11-14T16:23:29.783531+01:00" level=info msg="Dapr is shutting down" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:23:29.783556+01:00" level=info msg="Shutting down component statestore (state.redis/v1)" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:23:29.783598+01:00" level=info msg="Closing HTTP server [::]:3503…" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T16:23:29.783641+01:00" level=info msg="Shutting down component orderpubsub (pubsub.redis/v1)" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:23:29.783697+01:00" level=info msg="Dapr runtime stopped" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T16:23:29.783714+01:00" level=info msg="stopping mDNS server for app id: bar-service" app_id=bar-service component="nr (mdns/v1)" instance=Mac.fritz.box scope=dapr.contrib type=log ver=1.16.2
+
+termination signal received: shutting down
+Exited Dapr successfully
+Exited App successfully

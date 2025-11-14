@@ -7,17 +7,17 @@
 == APP - kitchen-service ==  * Running on http://127.0.0.1:5002
 == APP - kitchen-service ==  * Running on http://192.168.179.36:5002
 == APP - kitchen-service == Press CTRL+C to quit
-== APP - kitchen-service == 127.0.0.1 - - [14/Nov/2025 15:41:45] "GET /dapr/config HTTP/1.1" 404 -
+== APP - kitchen-service == 127.0.0.1 - - [14/Nov/2025 16:15:21] "GET /dapr/config HTTP/1.1" 404 -
 == APP - kitchen-service == 📋 Dapr subscription endpoint called, returning: [{'pubsubname': 'orderpubsub', 'topic': 'kitchen-orders', 'route': '/kitchen-orders'}]
-== APP - kitchen-service == 127.0.0.1 - - [14/Nov/2025 15:41:45] "GET /dapr/subscribe HTTP/1.1" 200 -
-== APP - kitchen-service == 🍔 Kitchen received order #03a9846e for lets go
-== APP - kitchen-service ==    Items: ['Classic Burger']
+== APP - kitchen-service == 127.0.0.1 - - [14/Nov/2025 16:15:21] "GET /dapr/subscribe HTTP/1.1" 200 -
+== APP - kitchen-service == 🍔 Kitchen received order #a12c390c for dasdsadsadasää#ä#ädsad
+== APP - kitchen-service ==    Items: ['Double Bacon Burger']
 == APP - kitchen-service ==    🔧 About to call process_order()
-== APP - kitchen-service ==    🍳 Cooking... (will take 4s)
+== APP - kitchen-service ==    🍳 Cooking... (will take 3s)
 == APP - kitchen-service ==    🍳 Cooking complete!
-== APP - kitchen-service ==    📤 Publishing kitchen-completed event for order #03a9846e
-== APP - kitchen-service == ✅ Kitchen completed order #03a9846e
+== APP - kitchen-service ==    📤 Publishing kitchen-completed event for order #a12c390c
+== APP - kitchen-service == ✅ Kitchen completed order #a12c390c
 == APP - kitchen-service ==    🔧 Finished calling process_order()
-== APP - kitchen-service == 127.0.0.1 - - [14/Nov/2025 15:42:05] "POST /kitchen-orders HTTP/1.1" 200 -
+== APP - kitchen-service == 127.0.0.1 - - [14/Nov/2025 16:15:32] "POST /kitchen-orders HTTP/1.1" 200 -
 
 termination signal received: shutting down

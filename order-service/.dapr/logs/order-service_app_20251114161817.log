@@ -1,0 +1,47 @@
+== APP - order-service ==  * Serving Flask app 'app'
+== APP - order-service ==  * Debug mode: off
+== APP - order-service == WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+== APP - order-service ==  * Running on all addresses (0.0.0.0)
+== APP - order-service ==  * Running on http://127.0.0.1:5001
+== APP - order-service ==  * Running on http://192.168.179.36:5001
+== APP - order-service == Press CTRL+C to quit
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:18] "GET /dapr/config HTTP/1.1" 404 -
+== APP - order-service == 📋 Order service subscriptions: [{'pubsubname': 'orderpubsub', 'topic': 'kitchen-completed', 'route': '/kitchen-completed'}, {'pubsubname': 'orderpubsub', 'topic': 'bar-completed', 'route': '/bar-completed'}]
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:18] "GET /dapr/subscribe HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:19] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:20] "GET / HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:20] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 💾 Saving order #be85161b to state store
+== APP - order-service == ✅ Order #be85161b saved to state store
+== APP - order-service == 📤 Publishing to kitchen-orders: order #be85161b
+== APP - order-service == ✅ Published to kitchen-orders
+== APP - order-service == 📤 Publishing to bar-orders: order #be85161b
+== APP - order-service == ✅ Published to bar-orders
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:22] "POST /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:23] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 🍺 Received bar-completed for order #be85161b
+== APP - order-service == ✅ Updated order #be85161b - bar ready
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:24] "POST /bar-completed HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:26] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 🍔 Received kitchen-completed for order #be85161b
+== APP - order-service == ✅ Updated order #be85161b - kitchen ready
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:26] "POST /kitchen-completed HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:29] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:32] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:35] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:38] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:41] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:44] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:47] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:18:50] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:19:08] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:19:22] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:19:25] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:19:28] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:19:35] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:19:41] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:19:47] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:20:05] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 16:20:15] "GET /api/orders HTTP/1.1" 200 -
+
+termination signal received: shutting down

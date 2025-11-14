@@ -67,3 +67,26 @@ Updating metadata for app command: python app.py
 Updating metadata for appPID: 58298
 You're up and running! Dapr logs will appear here.
 
+time="2025-11-14T15:47:04.080664+01:00" level=info msg="Received signal 'interrupt'; beginning shutdown" app_id=bar-service instance=Mac.fritz.box scope=dapr.signals type=log ver=1.16.2
+time="2025-11-14T15:47:04.08121+01:00" level=info msg="backend stopping..." app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T15:47:04.081251+01:00" level=info msg="workers stopping and draining..." app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T15:47:04.08123+01:00" level=info msg="orchestration-processor: worker stopped" app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T15:47:04.081234+01:00" level=info msg="activity-processor: worker stopped" app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T15:47:04.081314+01:00" level=info msg="finished stopping and draining workers!" app_id=bar-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T15:47:04.081348+01:00" level=info msg="Workflow engine stopped" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.wfengine type=log ver=1.16.2
+time="2025-11-14T15:47:04.081376+01:00" level=info msg="Actor runtime shutting down" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actor type=log ver=1.16.2
+time="2025-11-14T15:47:04.081376+01:00" level=info msg="Scheduler stream disconnected" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T15:47:04.081382+01:00" level=info msg="Scheduler stream disconnected" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T15:47:04.081446+01:00" level=error msg="Error communicating with placement: rpc error: code = Canceled desc = context canceled" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement.client type=log ver=1.16.2
+time="2025-11-14T15:47:04.081458+01:00" level=info msg="Scheduler stream disconnected" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T15:47:04.081494+01:00" level=info msg="Actor runtime stopped" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.actor type=log ver=1.16.2
+time="2025-11-14T15:47:04.081646+01:00" level=info msg="Dapr is shutting down" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T15:47:04.08167+01:00" level=info msg="Shutting down component statestore (state.redis/v1)" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T15:47:04.081776+01:00" level=info msg="Shutting down component orderpubsub (pubsub.redis/v1)" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T15:47:04.081816+01:00" level=info msg="Closing HTTP server [::]:3503…" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T15:47:04.081775+01:00" level=info msg="stopping mDNS server for app id: bar-service" app_id=bar-service component="nr (mdns/v1)" instance=Mac.fritz.box scope=dapr.contrib type=log ver=1.16.2
+time="2025-11-14T15:47:04.081908+01:00" level=info msg="Dapr runtime stopped" app_id=bar-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+
+termination signal received: shutting down
+Exited Dapr successfully
+Exited App successfully

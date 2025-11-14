@@ -10,3 +10,9 @@ spec:
     value: localhost:6379
   - name: redisPassword
     value: ""
+  - name: enableTLS
+    value: "false"
+scopes:
+  - order-service
+  - kitchen-service
+  - bar-service

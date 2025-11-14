@@ -7,17 +7,17 @@
 == APP - bar-service ==  * Running on http://127.0.0.1:5003
 == APP - bar-service ==  * Running on http://192.168.179.36:5003
 == APP - bar-service == Press CTRL+C to quit
-== APP - bar-service == 127.0.0.1 - - [14/Nov/2025 15:41:46] "GET /dapr/config HTTP/1.1" 404 -
+== APP - bar-service == 127.0.0.1 - - [14/Nov/2025 16:15:22] "GET /dapr/config HTTP/1.1" 404 -
 == APP - bar-service == 📋 Dapr subscription endpoint called, returning: [{'pubsubname': 'orderpubsub', 'topic': 'bar-orders', 'route': '/bar-orders'}]
-== APP - bar-service == 127.0.0.1 - - [14/Nov/2025 15:41:46] "GET /dapr/subscribe HTTP/1.1" 200 -
-== APP - bar-service == 🍺 Bar received order #03a9846e for lets go
-== APP - bar-service ==    Items: ['IPA']
+== APP - bar-service == 127.0.0.1 - - [14/Nov/2025 16:15:22] "GET /dapr/subscribe HTTP/1.1" 200 -
+== APP - bar-service == 🍺 Bar received order #a12c390c for dasdsadsadasää#ä#ädsad
+== APP - bar-service ==    Items: ['Stout']
 == APP - bar-service ==    🔧 About to call process_order()
 == APP - bar-service ==    🍻 Pouring... (will take 2s)
 == APP - bar-service ==    🍻 Pouring complete!
-== APP - bar-service ==    📤 Publishing bar-completed event for order #03a9846e
-== APP - bar-service == ✅ Bar completed order #03a9846e
+== APP - bar-service ==    📤 Publishing bar-completed event for order #a12c390c
+== APP - bar-service == ✅ Bar completed order #a12c390c
 == APP - bar-service ==    🔧 Finished calling process_order()
-== APP - bar-service == 127.0.0.1 - - [14/Nov/2025 15:42:03] "POST /bar-orders HTTP/1.1" 200 -
+== APP - bar-service == 127.0.0.1 - - [14/Nov/2025 16:15:31] "POST /bar-orders HTTP/1.1" 200 -
 
 termination signal received: shutting down

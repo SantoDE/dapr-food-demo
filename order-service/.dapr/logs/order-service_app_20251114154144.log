@@ -58,3 +58,25 @@
 == APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:29] "GET /api/orders HTTP/1.1" 200 -
 == APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:32] "GET /api/orders HTTP/1.1" 200 -
 == APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:35] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:38] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:41] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:44] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:47] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:50] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:53] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:56] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:43:59] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:44:02] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:44:05] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:44:09] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:44:14] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:44:22] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:44:24] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:44:37] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:44:54] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:45:07] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:45:42] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:45:53] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 15:47:03] "GET /api/orders HTTP/1.1" 200 -
+
+termination signal received: shutting down
