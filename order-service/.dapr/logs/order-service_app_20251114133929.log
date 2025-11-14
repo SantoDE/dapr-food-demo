@@ -1,0 +1,22 @@
+== APP - order-service ==  * Serving Flask app 'app'
+== APP - order-service ==  * Debug mode: off
+== APP - order-service == WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+== APP - order-service ==  * Running on all addresses (0.0.0.0)
+== APP - order-service ==  * Running on http://127.0.0.1:5001
+== APP - order-service ==  * Running on http://192.168.179.36:5001
+== APP - order-service == Press CTRL+C to quit
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:30] "GET /dapr/config HTTP/1.1" 404 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:30] "GET /dapr/subscribe HTTP/1.1" 404 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:34] "GET / HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:34] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:37] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:39] "POST /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:40] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:43] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:46] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:49] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:52] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:55] "GET /api/orders HTTP/1.1" 200 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:39:59] "GET /api/orders HTTP/1.1" 200 -
+
+termination signal received: shutting down

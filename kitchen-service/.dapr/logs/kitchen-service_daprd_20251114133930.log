@@ -1,0 +1,92 @@
+Starting Dapr with id kitchen-service. HTTP Port: 3502. gRPC Port: 57013
+Updating metadata for cliPID: 30797
+time="2025-11-14T13:39:30.925948+01:00" level=info msg="Starting Dapr Runtime -- version 1.16.2 -- commit 3c7722a8c5648354e24256993caf047bc8c80666" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.925985+01:00" level=info msg="Log level set to: info" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.926107+01:00" level=warning msg="mTLS is disabled. Skipping certificate request and tls validation" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.security type=log ver=1.16.2
+time="2025-11-14T13:39:30.926483+01:00" level=info msg="Enabled features: SchedulerReminders" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.926552+01:00" level=info msg="metric spec: {\"enabled\":true}" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.diagnostics type=log ver=1.16.2
+time="2025-11-14T13:39:30.926573+01:00" level=info msg="Using default latency distribution buckets: [1 2 3 4 5 6 8 10 13 16 20 25 30 40 50 65 80 100 130 160 200 250 300 400 500 650 800 1000 2000 5000 10000 20000 50000 100000]" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.diagnostics type=log ver=1.16.2
+time="2025-11-14T13:39:30.926656+01:00" level=warning msg="The default value for 'spec.metric.http.increasedCardinality' will change to 'false' in Dapr 1.15 or later" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.diagnostics type=log ver=1.16.2
+time="2025-11-14T13:39:30.927089+01:00" level=info msg="standalone mode configured" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.927106+01:00" level=info msg="app id: kitchen-service" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.927256+01:00" level=info msg="Dapr trace sampler initialized: ParentBased{root:AlwaysOnSampler,remoteParentSampled:AlwaysOnSampler,remoteParentNotSampled:AlwaysOffSampler,localParentSampled:AlwaysOnSampler,localParentNotSampled:AlwaysOffSampler}" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.927324+01:00" level=info msg="metrics server started on 0.0.0.0:57014/" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.927512+01:00" level=info msg="local service entry announced: kitchen-service -> 192.168.179.36:57015" app_id=kitchen-service component="nr (mdns/v1)" instance=Mac.fritz.box scope=dapr.contrib type=log ver=1.16.2
+time="2025-11-14T13:39:30.927529+01:00" level=info msg="Initialized name resolution to mdns" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.927622+01:00" level=info msg="Loading components…" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.931635+01:00" level=info msg="Connected and received scheduler hosts addresses: [localhost:50006]" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.watchhosts type=log ver=1.16.2
+time="2025-11-14T13:39:30.931739+01:00" level=info msg="Scheduler client initialized for address: localhost:50006" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.clients type=log ver=1.16.2
+time="2025-11-14T13:39:30.931751+01:00" level=info msg="Scheduler clients initialized" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.clients type=log ver=1.16.2
+time="2025-11-14T13:39:30.932379+01:00" level=info msg="Component loaded: orderpubsub (pubsub.redis/v1)" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.processor type=log ver=1.16.2
+time="2025-11-14T13:39:30.932457+01:00" level=info msg="Waiting for all outstanding components to be processed…" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.93656+01:00" level=info msg="Using 'statestore' as actor state store" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.processor.state type=log ver=1.16.2
+time="2025-11-14T13:39:30.936588+01:00" level=info msg="Component loaded: statestore (state.redis/v1)" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.processor type=log ver=1.16.2
+time="2025-11-14T13:39:30.936601+01:00" level=info msg="All outstanding components processed" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.936609+01:00" level=info msg="Loading endpoints…" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.936904+01:00" level=info msg="Waiting for all outstanding http endpoints to be processed…" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.936928+01:00" level=info msg="All outstanding http endpoints processed" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.936941+01:00" level=info msg="Loading Declarative Subscriptions…" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.937434+01:00" level=info msg="gRPC server listening on TCP address: :57013" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.grpc.api type=log ver=1.16.2
+time="2025-11-14T13:39:30.937452+01:00" level=info msg="Enabled gRPC tracing middleware" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.grpc.api type=log ver=1.16.2
+time="2025-11-14T13:39:30.937459+01:00" level=info msg="Enabled gRPC metrics middleware" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.grpc.api type=log ver=1.16.2
+time="2025-11-14T13:39:30.937497+01:00" level=info msg="Registering workflow engine for gRPC endpoint: [::]:57013" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.grpc.api type=log ver=1.16.2
+time="2025-11-14T13:39:30.937523+01:00" level=info msg="API gRPC server is running on port 57013" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.937542+01:00" level=warning msg="The default value for 'spec.metric.http.increasedCardinality' will change to 'false' in Dapr 1.15 or later" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T13:39:30.937569+01:00" level=info msg="Enabled max body size HTTP middleware with size 4194304 bytes" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T13:39:30.937577+01:00" level=info msg="Enabled tracing HTTP middleware" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T13:39:30.937582+01:00" level=info msg="Enabled metrics HTTP middleware" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T13:39:30.937767+01:00" level=info msg="HTTP server listening on TCP address: :3502" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T13:39:30.937781+01:00" level=info msg="HTTP server is running on port 3502" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.937787+01:00" level=info msg="The request body size parameter is: 4194304 bytes" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.937821+01:00" level=info msg="gRPC server listening on TCP address: :57015" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.grpc.internal type=log ver=1.16.2
+time="2025-11-14T13:39:30.937828+01:00" level=info msg="Enabled gRPC tracing middleware" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.grpc.internal type=log ver=1.16.2
+time="2025-11-14T13:39:30.937842+01:00" level=info msg="Enabled gRPC metrics middleware" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.grpc.internal type=log ver=1.16.2
+time="2025-11-14T13:39:30.937858+01:00" level=info msg="Internal gRPC server is running on :57015" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:30.937864+01:00" level=info msg="application protocol: http. waiting on port 5002.  This will block until the app is listening on that port." app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:31.139869+01:00" level=info msg="application discovered on port 5002" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:31.140083+01:00" level=info msg="Using Scheduler service for reminders." app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actor.reminders.scheduler type=log ver=1.16.2
+time="2025-11-14T13:39:31.14016+01:00" level=info msg="Actor runtime started" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actor type=log ver=1.16.2
+time="2025-11-14T13:39:31.140183+01:00" level=warning msg="Graceful shutdown timeout is infinite, will wait indefinitely to shutdown" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actor type=log ver=1.16.2
+time="2025-11-14T13:39:31.140186+01:00" level=info msg="worker started with backend dapr.actors/v1" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T13:39:31.140234+01:00" level=info msg="Workflow engine started" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.wfengine type=log ver=1.16.2
+time="2025-11-14T13:39:31.141339+01:00" level=info msg="Application configuration loaded" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:31.142109+01:00" level=info msg="app is subscribed to the following topics: [[kitchen-orders]] through pubsub=orderpubsub" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.processor.subscription type=log ver=1.16.2
+time="2025-11-14T13:39:31.143657+01:00" level=info msg="dapr initialized. Status: Running. Init Elapsed 216ms" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:39:31.143748+01:00" level=info msg="Reporting actor types: []" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement type=log ver=1.16.2
+time="2025-11-14T13:39:31.1438+01:00" level=info msg="Connected to placement localhost:50005" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement.client.connector.static type=log ver=1.16.2
+time="2025-11-14T13:39:31.143819+01:00" level=info msg="Scheduler stream connected for [JOB_TARGET_TYPE_JOB]" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T13:39:31.143827+01:00" level=info msg="Scheduler stream connected for [JOB_TARGET_TYPE_JOB]" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T13:39:31.143863+01:00" level=info msg="Scheduler stream connected for [JOB_TARGET_TYPE_JOB]" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T13:39:31.147096+01:00" level=info msg="Connected to placement localhost:50005" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement.client type=log ver=1.16.2
+time="2025-11-14T13:39:31.148107+01:00" level=info msg="Placement tables updated, version: 0" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement type=log ver=1.16.2
+time="2025-11-14T13:39:31.148137+01:00" level=info msg="Running actor reminder migration from state store to scheduler" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actors.reminders.migration type=log ver=1.16.2
+time="2025-11-14T13:39:31.148156+01:00" level=info msg="Skipping migration, no missing scheduler reminders found" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actors.reminders.migration type=log ver=1.16.2
+time="2025-11-14T13:39:31.148162+01:00" level=info msg="Found 0 missing scheduler reminders from state store" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actors.reminders.migration type=log ver=1.16.2
+time="2025-11-14T13:39:31.14817+01:00" level=info msg="Migrated 0 reminders from state store to scheduler successfully" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actors.reminders.migration type=log ver=1.16.2
+Updating metadata for app command: python app.py
+Updating metadata for appPID: 30816
+You're up and running! Dapr logs will appear here.
+
+time="2025-11-14T13:40:38.143544+01:00" level=info msg="Received signal 'interrupt'; beginning shutdown" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.signals type=log ver=1.16.2
+time="2025-11-14T13:40:38.143742+01:00" level=info msg="backend stopping..." app_id=kitchen-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T13:40:38.143767+01:00" level=info msg="workers stopping and draining..." app_id=kitchen-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T13:40:38.143772+01:00" level=error msg="Error communicating with placement: rpc error: code = Canceled desc = context canceled" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actors.placement.client type=log ver=1.16.2
+time="2025-11-14T13:40:38.143781+01:00" level=info msg="activity-processor: worker stopped" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T13:40:38.143803+01:00" level=info msg="orchestration-processor: worker stopped" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T13:40:38.143808+01:00" level=info msg="Scheduler stream disconnected" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T13:40:38.14378+01:00" level=info msg="Actor runtime shutting down" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actor type=log ver=1.16.2
+time="2025-11-14T13:40:38.143813+01:00" level=info msg="Scheduler stream disconnected" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T13:40:38.143833+01:00" level=info msg="finished stopping and draining workers!" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.wfengine.durabletask.backend type=log ver=1.16.2
+time="2025-11-14T13:40:38.143858+01:00" level=info msg="Scheduler stream disconnected" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.scheduler.cluster type=log ver=1.16.2
+time="2025-11-14T13:40:38.14386+01:00" level=info msg="Workflow engine stopped" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.wfengine type=log ver=1.16.2
+time="2025-11-14T13:40:38.143854+01:00" level=info msg="Actor runtime stopped" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.actor type=log ver=1.16.2
+time="2025-11-14T13:40:38.144018+01:00" level=info msg="Closing HTTP server [::]:3502…" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime.http type=log ver=1.16.2
+time="2025-11-14T13:40:38.144038+01:00" level=info msg="Dapr is shutting down" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:40:38.14406+01:00" level=info msg="stopping mDNS server for app id: kitchen-service" app_id=kitchen-service component="nr (mdns/v1)" instance=Mac.fritz.box scope=dapr.contrib type=log ver=1.16.2
+time="2025-11-14T13:40:38.14428+01:00" level=info msg="Shutting down component orderpubsub (pubsub.redis/v1)" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:40:38.144605+01:00" level=info msg="Shutting down component statestore (state.redis/v1)" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+time="2025-11-14T13:40:38.144642+01:00" level=info msg="Dapr runtime stopped" app_id=kitchen-service instance=Mac.fritz.box scope=dapr.runtime type=log ver=1.16.2
+
+termination signal received: shutting down
+Exited Dapr successfully
+Exited App successfully

@@ -1,0 +1,19 @@
+== APP - bar-service == 🍺 Bar Service starting...
+== APP - bar-service ==    Waiting for beer orders...
+== APP - bar-service ==  * Serving Flask app 'app'
+== APP - bar-service ==  * Debug mode: off
+== APP - bar-service == WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+== APP - bar-service ==  * Running on all addresses (0.0.0.0)
+== APP - bar-service ==  * Running on http://127.0.0.1:5003
+== APP - bar-service ==  * Running on http://192.168.179.36:5003
+== APP - bar-service == Press CTRL+C to quit
+== APP - bar-service == 127.0.0.1 - - [14/Nov/2025 13:42:26] "GET /dapr/config HTTP/1.1" 404 -
+== APP - bar-service == 📋 Dapr subscription endpoint called, returning: [{'pubsubname': 'orderpubsub', 'topic': 'bar-orders', 'route': '/bar-orders'}]
+== APP - bar-service == 127.0.0.1 - - [14/Nov/2025 13:42:26] "GET /dapr/subscribe HTTP/1.1" 200 -
+== APP - bar-service == 🍺 Bar received order #3a3df9a9 for aaaaaaaaavadsada
+== APP - bar-service ==    Items: ['Wheat Beer']
+== APP - bar-service == 127.0.0.1 - - [14/Nov/2025 13:43:05] "POST /bar-orders HTTP/1.1" 200 -
+== APP - bar-service ==    🍻 Pouring... (will take 3s)
+== APP - bar-service == ✅ Bar completed order #3a3df9a9
+
+termination signal received: shutting down

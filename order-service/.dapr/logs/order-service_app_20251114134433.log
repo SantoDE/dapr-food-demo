@@ -1,0 +1,11 @@
+== APP - order-service ==  * Serving Flask app 'app'
+== APP - order-service ==  * Debug mode: off
+== APP - order-service == WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+== APP - order-service ==  * Running on all addresses (0.0.0.0)
+== APP - order-service ==  * Running on http://127.0.0.1:5001
+== APP - order-service ==  * Running on http://192.168.179.36:5001
+== APP - order-service == Press CTRL+C to quit
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:44:34] "GET /dapr/config HTTP/1.1" 404 -
+== APP - order-service == 127.0.0.1 - - [14/Nov/2025 13:44:34] "GET /dapr/subscribe HTTP/1.1" 404 -
+
+termination signal received: shutting down

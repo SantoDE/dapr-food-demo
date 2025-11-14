@@ -1,0 +1,25 @@
+== APP - kitchen-service == 🍔 Kitchen Service starting...
+== APP - kitchen-service ==    Waiting for burger orders...
+== APP - kitchen-service ==  * Serving Flask app 'app'
+== APP - kitchen-service ==  * Debug mode: off
+== APP - kitchen-service == WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+== APP - kitchen-service ==  * Running on all addresses (0.0.0.0)
+== APP - kitchen-service ==  * Running on http://127.0.0.1:5002
+== APP - kitchen-service ==  * Running on http://192.168.179.36:5002
+== APP - kitchen-service == Press CTRL+C to quit
+== APP - kitchen-service == 127.0.0.1 - - [14/Nov/2025 15:34:16] "GET /dapr/config HTTP/1.1" 404 -
+== APP - kitchen-service == 📋 Dapr subscription endpoint called, returning: [{'pubsubname': 'orderpubsub', 'topic': 'kitchen-orders', 'route': '/kitchen-orders'}]
+== APP - kitchen-service == 127.0.0.1 - - [14/Nov/2025 15:34:16] "GET /dapr/subscribe HTTP/1.1" 200 -
+== APP - kitchen-service == 🍔 Kitchen received order #2b07648c for saSasa
+== APP - kitchen-service ==    Items: ['Double Bacon Burger']
+== APP - kitchen-service ==    🔧 About to call process_order()
+== APP - kitchen-service ==    🍳 Cooking... (will take 3s)
+== APP - kitchen-service ==    🍳 Cooking complete!
+== APP - kitchen-service ==    📝 Updating state store for order #2b07648c
+== APP - kitchen-service ==    📖 Retrieved order from state store: False
+== APP - kitchen-service ==    ⚠️  WARNING: No data found for order #2b07648c!
+== APP - kitchen-service == ✅ Kitchen completed order #2b07648c
+== APP - kitchen-service ==    🔧 Finished calling process_order()
+== APP - kitchen-service == 127.0.0.1 - - [14/Nov/2025 15:34:34] "POST /kitchen-orders HTTP/1.1" 200 -
+
+termination signal received: shutting down

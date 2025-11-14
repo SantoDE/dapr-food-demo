@@ -1,0 +1,24 @@
+version: 1
+common:
+  resourcesPath: ./components
+apps:
+  - appID: order-service
+    appDirPath: ./order-service/
+    appPort: 5001
+    appProtocol: http
+    daprHTTPPort: 3501
+    command: ["python", "app.py"]
+
+  - appID: kitchen-service
+    appDirPath: ./kitchen-service/
+    appPort: 5002
+    appProtocol: http
+    daprHTTPPort: 3502
+    command: ["python", "app.py"]
+
+  - appID: bar-service
+    appDirPath: ./bar-service/
+    appPort: 5003
+    appProtocol: http
+    daprHTTPPort: 3503
+    command: ["python", "app.py"]

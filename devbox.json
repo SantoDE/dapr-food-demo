@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetpack-io/devbox/main/.schema/devbox.schema.json",
+  "packages": {
+    "python311": "latest",
+    "python311Packages.pip": "latest",
+    "python311Packages.virtualenv": "latest",
+    "dapr-cli": "latest",
+    "docker": "latest",
+    "docker-compose": "latest",
+    "redis": "latest",
+    "curl": "latest",
+    "jq": "latest"
+  },
+  "shell": {
+    "init_hook": [
+      "echo '🚀 Python + Dapr Development Environment'",
+      "echo '========================================'",
+      "echo 'Python version:' $(python --version)",
+      "echo 'Dapr CLI version:' $(dapr version --client-only 2>/dev/null || echo 'not initialized')",
+      "echo ''",
+      "echo '📝 Quick commands:'",
+      "echo '  dapr init              - Initialize Dapr runtime'",
+      "echo '  dapr run --app-id myapp --app-port 8000 -- python app.py'",
+      "echo '  dapr dashboard         - Open Dapr dashboard'",
+      "echo ''",
+      "echo '💡 Create a virtual environment with: python -m venv .venv'",
+      "echo '   Then activate it with: source .venv/bin/activate'",
+      "echo ''"
+    ],
+    "scripts": {
+      "dapr-init": "dapr init",
+      "dapr-dashboard": "dapr dashboard",
+      "setup-venv": "python -m venv .venv && echo 'Virtual environment created. Activate with: source .venv/bin/activate'"
+    }
+  },
+  "env": {
+    "DAPR_HTTP_PORT": "3500",
+    "DAPR_GRPC_PORT": "50001"
+  }
+}
