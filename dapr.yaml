@@ -8,7 +8,7 @@ apps:
     appProtocol: http
     daprHTTPPort: 3501
     command: ["python", "app.py"]
-    config: appconfig
+    configFilePath: ./../components/config.yaml
 
   - appID: kitchen-service
     appDirPath: ./kitchen-service/
@@ -16,7 +16,7 @@ apps:
     appProtocol: http
     daprHTTPPort: 3502
     command: ["python", "app.py"]
-    config: appconfig
+    configFilePath: ./../components/config.yaml
 
   - appID: bar-service
     appDirPath: ./bar-service/
@@ -24,4 +24,4 @@ apps:
     appProtocol: http
     daprHTTPPort: 3503
     command: ["python", "app.py"]
-    config: appconfig
+    configFilePath: ./../components/config.yaml

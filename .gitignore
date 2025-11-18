@@ -1,0 +1,4 @@
+.dapr/logs/
+devbox.d
+.devbox
+.venv

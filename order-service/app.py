@@ -4,8 +4,49 @@ from cloudevents.http import from_http
 import json
 import uuid
 from datetime import datetime
+import os
+
+# OpenTelemetry imports
+from opentelemetry import trace, propagate
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.instrumentation.grpc import GrpcInstrumentorClient
+from opentelemetry.propagate import set_global_textmap
+from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
+
+# Configure OpenTelemetry
+SERVICE_NAME = os.getenv("SERVICE_NAME", "order-service")
+OTEL_EXPORTER_OTLP_ENDPOINT = os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT", "http://localhost:4317")
+
+resource = Resource(attributes={
+    "service.name": SERVICE_NAME,
+    "service.version": "1.0.0",
+    "deployment.environment": "development"
+})
+
+trace.set_tracer_provider(TracerProvider(resource=resource))
+tracer = trace.get_tracer(__name__)
+
+# Set W3C Trace Context propagator (used by Dapr)
+set_global_textmap(TraceContextTextMapPropagator())
+
+# Configure OTLP exporter
+otlp_exporter = OTLPSpanExporter(endpoint=OTEL_EXPORTER_OTLP_ENDPOINT, insecure=True)
+span_processor = BatchSpanProcessor(otlp_exporter)
+trace.get_tracer_provider().add_span_processor(span_processor)
+
+print(f"🔍 OpenTelemetry initialized for {SERVICE_NAME}, exporting to {OTEL_EXPORTER_OTLP_ENDPOINT}", flush=True)
 
 app = Flask(__name__)
+
+# Instrument Flask, requests, and gRPC (for Dapr client SDK)
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
+GrpcInstrumentorClient().instrument()
 
 DAPR_STORE_NAME = "statestore"
 PUBSUB_NAME = "orderpubsub"
@@ -17,30 +58,38 @@ def index():
 @app.route('/api/orders', methods=['POST'])
 def create_order():
     try:
-        customer_name = request.form.get('customer_name')
-        items = request.form.getlist('items')
+        with tracer.start_as_current_span("create_order") as span:
+            customer_name = request.form.get('customer_name')
+            items = request.form.getlist('items')
 
-        print(f"📝 Received order - Customer: {customer_name}, Items: {items}", flush=True)
+            print(f"📝 Received order - Customer: {customer_name}, Items: {items}", flush=True)
 
-        if not items:
-            return '<div id="order-status" class="error">Please select at least one item!</div>'
+            if not items:
+                span.set_attribute("error", True)
+                return '<div id="order-status" class="error">Please select at least one item!</div>'
 
-        order_id = str(uuid.uuid4())[:8]
+            order_id = str(uuid.uuid4())[:8]
 
-        # Separate food and drinks
-        burgers = [item for item in items if 'Burger' in item]
-        beers = [item for item in items if item in ['Lager', 'IPA', 'Stout', 'Wheat Beer']]
+            # Separate food and drinks
+            burgers = [item for item in items if 'Burger' in item]
+            beers = [item for item in items if item in ['Lager', 'IPA', 'Stout', 'Wheat Beer']]
 
-        print(f"📝 Processed - Burgers: {burgers}, Beers: {beers}", flush=True)
+            print(f"📝 Processed - Burgers: {burgers}, Beers: {beers}", flush=True)
 
-        order = {
-            'order_id': order_id,
-            'customer_name': customer_name,
-            'burgers': burgers,
-            'beers': beers,
-            'status': 'pending',
-            'created_at': datetime.now().isoformat()
-        }
+            # Add span attributes
+            span.set_attribute("order.id", order_id)
+            span.set_attribute("order.customer_name", customer_name)
+            span.set_attribute("order.burger_count", len(burgers))
+            span.set_attribute("order.beer_count", len(beers))
+
+            order = {
+                'order_id': order_id,
+                'customer_name': customer_name,
+                'burgers': burgers,
+                'beers': beers,
+                'status': 'pending',
+                'created_at': datetime.now().isoformat()
+            }
 
         with DaprClient() as client:
             # Save order to state store
@@ -77,32 +126,50 @@ def create_order():
             import time
             time.sleep(0.1)  # 100ms should be enough for Redis
 
-            # Publish to kitchen if burgers
-            if burgers:
+        # Helper to inject trace context into Dapr pub/sub requests
+        def trace_injector():
+            headers = {}
+            propagate.inject(headers)
+            return headers
+
+        # Publish to kitchen if burgers
+        if burgers:
+            with tracer.start_as_current_span("publish_to_kitchen") as pub_span:
+                pub_span.set_attribute("order.id", order_id)
+                pub_span.set_attribute("order.burgers", json.dumps(burgers))
                 print(f"📤 Publishing to kitchen-orders: order #{order_id}", flush=True)
-                client.publish_event(
-                    pubsub_name=PUBSUB_NAME,
-                    topic_name="kitchen-orders",
-                    data=json.dumps({
-                        'order_id': order_id,
-                        'customer_name': customer_name,
-                        'items': burgers
-                    })
-                )
+
+                # Create new DaprClient with trace context headers
+                with DaprClient(headers_callback=trace_injector) as pub_client:
+                    pub_client.publish_event(
+                        pubsub_name=PUBSUB_NAME,
+                        topic_name="kitchen-orders",
+                        data=json.dumps({
+                            'order_id': order_id,
+                            'customer_name': customer_name,
+                            'items': burgers
+                        })
+                    )
                 print(f"✅ Published to kitchen-orders", flush=True)
 
-            # Publish to bar if beers
-            if beers:
+        # Publish to bar if beers
+        if beers:
+            with tracer.start_as_current_span("publish_to_bar") as pub_span:
+                pub_span.set_attribute("order.id", order_id)
+                pub_span.set_attribute("order.beers", json.dumps(beers))
                 print(f"📤 Publishing to bar-orders: order #{order_id}", flush=True)
-                client.publish_event(
-                    pubsub_name=PUBSUB_NAME,
-                    topic_name="bar-orders",
-                    data=json.dumps({
-                        'order_id': order_id,
-                        'customer_name': customer_name,
-                        'items': beers
-                    })
-                )
+
+                # Create new DaprClient with trace context headers
+                with DaprClient(headers_callback=trace_injector) as pub_client:
+                    pub_client.publish_event(
+                        pubsub_name=PUBSUB_NAME,
+                        topic_name="bar-orders",
+                        data=json.dumps({
+                            'order_id': order_id,
+                            'customer_name': customer_name,
+                            'items': beers
+                        })
+                    )
                 print(f"✅ Published to bar-orders", flush=True)
 
         return f'''<div id="order-status" class="success">
