@@ -32,25 +32,50 @@ A microservices demo application showcasing Dapr building blocks with a fun burg
 ## Prerequisites
 
 - Python 3.11+
-- Dapr CLI (`dapr init`)
-- Redis
+- Dapr CLI
+- Docker & Docker Compose (for observability stack)
 - Or just use the `devbox.json` provided!
 
-## Quick Start with Devbox
+## Quick Start
+
+### Option 1: One-Command Startup (Recommended)
+
+The easiest way to run the entire system:
 
 ```bash
-# Enter the development environment
-devbox shell
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Run all services
+# Make script executable (first time only)
 chmod +x run-all.sh
+
+# Start everything
 ./run-all.sh
 ```
 
-## Manual Setup
+**What the script does:**
+- ✅ Checks and initializes Dapr if needed
+- 🔍 Starts Jaeger for distributed tracing
+- 🚀 Launches all three services using Dapr Multi-App Run
+- 📊 Provides links to all UIs and dashboards
+
+**Access the application:**
+- **Order Service (Frontend)**: http://localhost:5001
+- **Jaeger Tracing UI**: http://localhost:16686
+- **Dapr Dashboard**: Run `dapr dashboard` in another terminal, then visit http://localhost:8080
+
+Press `Ctrl+C` to stop all services gracefully.
+
+### Option 2: Using Devbox
+
+```bash
+# Enter the development environment (includes all dependencies)
+devbox shell
+
+# Run all services
+./run-all.sh
+```
+
+## Manual Setup (Advanced)
+
+If you prefer to run services individually or customize the setup:
 
 ### 1. Install Dependencies
 
@@ -61,28 +86,37 @@ pip install -r requirements.txt
 ### 2. Initialize Dapr
 
 ```bash
-dapr init
+dapr init --dev
 ```
 
-### 3. Start Redis
+### 3. Start Observability Stack (Optional)
 
 ```bash
-redis-server
+docker compose -f docker-compose.observability.yaml up -d
 ```
 
-### 4. Start Services
+### 4. Start All Services
 
-In separate terminals:
+**Option A: Multi-App Run (Recommended)**
+
+```bash
+dapr run -f dapr.yaml
+```
+
+**Option B: Individual Services in Separate Terminals**
 
 ```bash
 # Terminal 1 - Kitchen Service
-dapr run --app-id kitchen-service --app-port 5002 --dapr-http-port 3502 --components-path ./components -- python kitchen-service/app.py
+cd kitchen-service
+dapr run --app-id kitchen-service --app-port 5002 --dapr-http-port 3502 --resources-path ../components --config ../components/config.yaml -- python app.py
 
 # Terminal 2 - Bar Service
-dapr run --app-id bar-service --app-port 5003 --dapr-http-port 3503 --components-path ./components -- python bar-service/app.py
+cd bar-service
+dapr run --app-id bar-service --app-port 5003 --dapr-http-port 3503 --resources-path ../components --config ../components/config.yaml -- python app.py
 
 # Terminal 3 - Order Service (Frontend)
-dapr run --app-id order-service --app-port 5001 --dapr-http-port 3501 --components-path ./components -- python order-service/app.py
+cd order-service
+dapr run --app-id order-service --app-port 5001 --dapr-http-port 3501 --resources-path ../components --config ../components/config.yaml -- python app.py
 ```
 
 ## Usage
