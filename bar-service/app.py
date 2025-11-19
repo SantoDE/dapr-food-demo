@@ -49,6 +49,10 @@ GrpcInstrumentorClient().instrument()
 
 DAPR_STORE_NAME = "statestore"
 
+@app.route('/health')
+def health():
+    return jsonify({'status': 'healthy'}), 200
+
 @app.route('/dapr/subscribe', methods=['GET'])
 def subscribe():
     """Tell Dapr what topics we want to subscribe to"""

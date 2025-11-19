@@ -1,0 +1,50 @@
+version: v2beta1
+name: dapr-food-demo
+
+# Define container images to build with Cloud Native Buildpacks
+images:
+  order-service:
+    image: dapr-food-demo/order-service
+    tags:
+      - latest
+    custom:
+      command: ./build-with-pack.sh order-service order-service
+
+  kitchen-service:
+    image: dapr-food-demo/kitchen-service
+    tags:
+      - latest
+    custom:
+      command: ./build-with-pack.sh kitchen-service kitchen-service
+
+  bar-service:
+    image: dapr-food-demo/bar-service
+    tags:
+      - latest
+    custom:
+      command: ./build-with-pack.sh bar-service bar-service
+
+# Hooks to load images into kind cluster after building
+hooks:
+  - name: load-images-to-kind
+    events: ["after:build"]
+    command: |
+      echo "Loading images into kind cluster..."
+      kind load docker-image dapr-food-demo/order-service --name clc-2025 || true
+      kind load docker-image dapr-food-demo/kitchen-service --name clc-2025 || true
+      kind load docker-image dapr-food-demo/bar-service --name clc-2025 || true
+      echo "Images loaded into kind cluster"
+
+# Define deployments
+deployments:
+  # Deploy Dapr components
+  dapr-components:
+    kubectl:
+      manifests:
+        - components-k8s/
+
+  # Deploy services
+  services:
+    kubectl:
+      manifests:
+        - k8s/

@@ -9,28 +9,42 @@
     "docker-compose": "latest",
     "redis": "latest",
     "curl": "latest",
-    "jq": "latest"
+    "jq": "latest",
+    "pack": "latest",
+    "devspace": "latest",
+    "kubectl": "latest",
+    "kind": "latest"
   },
   "shell": {
     "init_hook": [
-      "echo '🚀 Python + Dapr Development Environment'",
-      "echo '========================================'",
-      "echo 'Python version:' $(python --version)",
-      "echo 'Dapr CLI version:' $(dapr version --client-only 2>/dev/null || echo 'not initialized')",
+      "echo '🚀 Python + Dapr + Kubernetes Development Environment'",
+      "echo '===================================================='",
+      "echo 'Python:' $(python --version)",
+      "echo 'Dapr CLI:' $(dapr version --client-only 2>/dev/null || echo 'not initialized')",
+      "echo 'Pack (Buildpacks):' $(pack version 2>/dev/null || echo 'available')",
+      "echo 'DevSpace:' $(devspace version 2>/dev/null || echo 'available')",
+      "echo 'kubectl:' $(kubectl version --client -o json 2>/dev/null | jq -r '.clientVersion.gitVersion' || echo 'available')",
       "echo ''",
       "echo '📝 Quick commands:'",
-      "echo '  dapr init              - Initialize Dapr runtime'",
-      "echo '  dapr run --app-id myapp --app-port 8000 -- python app.py'",
-      "echo '  dapr dashboard         - Open Dapr dashboard'",
+      "echo '  Local development:'",
+      "echo '    ./run-all.sh         - Run all services locally with Dapr'",
+      "echo '    dapr dashboard       - Open Dapr dashboard'",
       "echo ''",
-      "echo '💡 Create a virtual environment with: python -m venv .venv'",
-      "echo '   Then activate it with: source .venv/bin/activate'",
+      "echo '  Kubernetes deployment:'",
+      "echo '    ./run-k8s.sh         - Deploy to Kubernetes with DevSpace'",
+      "echo '    devspace dev         - Dev mode with hot-reload'",
+      "echo '    pack build <image>   - Build with buildpacks manually'",
+      "echo ''",
+      "echo '💡 See QUICKSTART_K8S.md for Kubernetes quick start'",
       "echo ''"
     ],
     "scripts": {
       "dapr-init": "dapr init",
+      "dapr-init-k8s": "dapr init -k",
       "dapr-dashboard": "dapr dashboard",
-      "setup-venv": "python -m venv .venv && echo 'Virtual environment created. Activate with: source .venv/bin/activate'"
+      "setup-venv": "python -m venv .venv && echo 'Virtual environment created. Activate with: source .venv/bin/activate'",
+      "k8s-dev": "./run-k8s.sh",
+      "local-dev": "./run-all.sh"
     }
   },
   "env": {

@@ -210,16 +210,115 @@ dapr state get --app-id order-service --state-store statestore --key "order-<ORD
 - **Decoupling**: Each service can be developed/deployed independently
 - **HTMX**: Modern frontend without heavy JavaScript frameworks
 
+## Kubernetes Deployment with DevSpace
+
+Run this demo in Kubernetes using DevSpace for a production-like environment with hot-reloading!
+
+### Prerequisites
+
+- Kubernetes cluster (minikube, kind, Docker Desktop, or remote cluster)
+- [DevSpace CLI](https://devspace.sh/cli/docs/getting-started/installation)
+- [Dapr installed on Kubernetes](https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-deploy/)
+- kubectl configured to access your cluster
+
+### Setup Dapr on Kubernetes
+
+If Dapr isn't installed on your cluster yet:
+
+```bash
+# Install Dapr on your cluster
+dapr init -k
+
+# Verify installation
+dapr status -k
+```
+
+### Deploy with DevSpace
+
+Uses **Cloud Native Buildpacks** - no Dockerfiles needed! The buildpacks auto-detect your Python apps.
+
+```bash
+# Quick start with helper script
+./run-k8s.sh
+
+# Or run directly:
+# Development mode with hot-reload (recommended)
+devspace dev
+
+# Or just deploy without dev mode
+devspace deploy
+```
+
+### What DevSpace Does
+
+When you run `devspace dev`:
+- Builds container images using **Cloud Native Buildpacks** (no Dockerfile required!)
+- Deploys Redis to your cluster via Helm
+- Deploys all Dapr components (state store, pub/sub, config)
+- Deploys all three microservices with Dapr sidecars
+- Sets up port forwarding (access via localhost:5001)
+- Syncs code changes in real-time for hot-reloading
+- Streams logs from all services
+
+### Access the Application
+
+Once deployed, DevSpace automatically forwards ports:
+
+- **Order Service (Frontend)**: http://localhost:5001
+- Check logs: `devspace logs` or see them in the dev terminal
+
+### Stop and Clean Up
+
+```bash
+# Stop dev mode (Ctrl+C in terminal)
+
+# Purge all deployments
+devspace purge
+```
+
+### Development Workflow
+
+```bash
+# Start development mode
+devspace dev
+
+# Make changes to any service code
+# DevSpace automatically syncs files and restarts the app
+
+# View logs
+devspace logs -f
+
+# Open a shell in a running container
+devspace enter
+```
+
+### Kubernetes-Specific Files
+
+- [devspace.yaml](devspace.yaml) - DevSpace configuration with Buildpacks
+- [k8s/](k8s/) - Kubernetes manifests for all services
+- [components-k8s/](components-k8s/) - Dapr components configured for Kubernetes
+- [KUBERNETES.md](KUBERNETES.md) - Detailed Kubernetes deployment guide
+- [run-k8s.sh](run-k8s.sh) - Helper script for easy deployment
+
+### Why DevSpace + Buildpacks?
+
+- **No Dockerfiles needed**: Cloud Native Buildpacks auto-detect Python and build optimized images
+- **Fast iteration**: Code changes sync instantly, no rebuild/redeploy
+- **Production-like**: Run in real Kubernetes with Dapr
+- **Multi-service**: Manage all 3 services from one command
+- **Works everywhere**: Local k8s (kind/minikube) or remote clusters
+- **Best practices**: Buildpacks include security updates and optimizations
+
 ## Next Steps
 
 Want to extend this demo? Try:
 
 - Add workflow orchestration for order completion
 - Implement service-to-service invocation
-- Add observability with Zipkin tracing
-- Deploy to Kubernetes with Dapr
+- Add observability with Zipkin tracing in Kubernetes
 - Add secrets management for API keys
 - Implement resiliency policies (retries, circuit breakers)
+- Deploy to a cloud Kubernetes service (AKS, EKS, GKE)
 
 ## Troubleshooting
 

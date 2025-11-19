@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bar-service
+  labels:
+    app: bar-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bar-service
+  template:
+    metadata:
+      labels:
+        app: bar-service
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "bar-service"
+        dapr.io/app-port: "5003"
+        dapr.io/app-protocol: "http"
+        dapr.io/config: "dapr-config"
+        dapr.io/log-level: "info"
+    spec:
+      containers:
+      - name: bar-service
+        image: dapr-food-demo/bar-service:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5003
+          name: http
+        env:
+        - name: DAPR_HTTP_PORT
+          value: "3500"
+        - name: PORT
+          value: "5003"
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://jaeger.default.svc.cluster.local:4317"
+        - name: SERVICE_NAME
+          value: "bar-service"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bar-service
+  labels:
+    app: bar-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 5003
+    protocol: TCP
+    name: http
+  selector:
+    app: bar-service

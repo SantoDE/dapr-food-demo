@@ -1,0 +1,16 @@
+apiVersion: dapr.io/v1alpha1
+kind: Configuration
+metadata:
+  name: dapr-config
+  namespace: default
+spec:
+  tracing:
+    samplingRate: "1"
+    # Using OTLP for OpenTelemetry integration
+    # Note: Update this if you deploy Jaeger/OTEL collector in k8s
+    otel:
+      endpointAddress: "http://jaeger.default.svc.cluster.local:4318"
+      isSecure: false
+      protocol: http
+  metric:
+    enabled: true

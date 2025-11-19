@@ -1,0 +1,12 @@
+[build]
+include = [
+    "*.py",
+    "requirements.txt",
+    "Procfile",
+    "runtime.txt",
+    "templates/"
+]
+
+[[build.env]]
+name = "BP_CPYTHON_VERSION"
+value = "3.11.*"

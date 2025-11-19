@@ -51,6 +51,10 @@ GrpcInstrumentorClient().instrument()
 DAPR_STORE_NAME = "statestore"
 PUBSUB_NAME = "orderpubsub"
 
+@app.route('/health')
+def health():
+    return jsonify({'status': 'healthy'}), 200
+
 @app.route('/')
 def index():
     return render_template('index.html')
