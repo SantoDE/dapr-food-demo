@@ -19,8 +19,6 @@ spec:
             - containerPort: 5001
               name: http1
           env:
-            - name: PORT
-              value: "5001"
             - name: DAPR_HTTP_PORT
               value: "3500"
 ---
@@ -46,8 +44,6 @@ spec:
             - containerPort: 5002
               name: http1
           env:
-            - name: PORT
-              value: "5002"
             - name: DAPR_HTTP_PORT
               value: "3500"
 ---
@@ -73,7 +69,5 @@ spec:
             - containerPort: 5003
               name: http1
           env:
-            - name: PORT
-              value: "5003"
             - name: DAPR_HTTP_PORT
               value: "3500"
