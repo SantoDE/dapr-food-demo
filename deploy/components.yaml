@@ -38,3 +38,5 @@ metadata:
 spec:
   tracing:
     samplingRate: "1"
+  metric:
+    enabled: false
