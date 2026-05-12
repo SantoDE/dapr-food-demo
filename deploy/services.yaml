@@ -48,6 +48,17 @@ spec:
           env:
             - name: DAPR_HTTP_PORT
               value: "3500"
+          readinessProbe:
+            httpGet:
+              port: 5052
+              path: "/health"
+          livenessProbe:
+            tcpSocket:
+              port: 5052
+          startupProbe:
+            httpGet:
+              port: 5052
+              path: "/health"
 ---
 apiVersion: serving.knative.dev/v1
 kind: Service
@@ -74,3 +85,15 @@ spec:
           env:
             - name: DAPR_HTTP_PORT
               value: "3500"
+          readinessProbe:
+            httpGet:
+              port: 5053
+              path: "/health"
+          livenessProbe:
+            tcpSocket:
+              port: 5053
+          startupProbe:
+            httpGet:
+              port: 5053
+              path: "/health"
+          
