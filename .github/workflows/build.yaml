@@ -1,0 +1,43 @@
+name: Build and Push Images
+
+on:
+  push:
+    branches: [main]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ghcr.io/${{ github.repository_owner }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        service:
+          - name: order-service
+            port: 5001
+          - name: kitchen-service
+            port: 5002
+          - name: bar-service
+            port: 5003
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push ${{ matrix.service.name }}
+        uses: docker/build-push-action@v5
+        with:
+          context: ./${{ matrix.service.name }}
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/dapr-food-demo-${{ matrix.service.name }}:latest
+            ghcr.io/${{ github.repository_owner }}/dapr-food-demo-${{ matrix.service.name }}:${{ github.sha }}
