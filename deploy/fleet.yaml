@@ -3,6 +3,3 @@ helm:
   disablePreprocess: true
 targets:
   - clusterName: rke2-test
-dependsOn:
-  - name: harvesterpoc-platform-platform-dapr
-  - name: harvesterpoc-platform-platform-redis
