@@ -12,7 +12,7 @@ spec:
         dapr.io/app-port: "5001"
         dapr.io/app-protocol: "http"
         dapr.io/config: "dapr-config"
-        dapr.io/enable-metrics: "false"
+        dapr.io/metrics-port: "9092"
     spec:
       containers:
         - image: ghcr.io/santode/dapr-food-demo-order-service:665f8a30f93e15a8be0350c87c83ad772e9bcbf0
@@ -37,7 +37,7 @@ spec:
         dapr.io/app-port: "5002"
         dapr.io/app-protocol: "http"
         dapr.io/config: "dapr-config"
-        dapr.io/enable-metrics: "false"
+        dapr.io/metrics-port: "9092"
         autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
@@ -63,7 +63,7 @@ spec:
         dapr.io/app-port: "5003"
         dapr.io/app-protocol: "http"
         dapr.io/config: "dapr-config"
-        dapr.io/enable-metrics: "false"
+        dapr.io/metrics-port: "9092"
         autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
