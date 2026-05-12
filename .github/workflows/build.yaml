@@ -3,10 +3,8 @@ name: Build and Push Images
 on:
   push:
     branches: [main]
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_PREFIX: ghcr.io/${{ github.repository_owner }}
+    paths-ignore:
+      - 'deploy/services.yaml'
 
 jobs:
   build:
@@ -14,15 +12,14 @@ jobs:
     permissions:
       contents: read
       packages: write
+    outputs:
+      owner: ${{ steps.owner.outputs.value }}
     strategy:
       matrix:
         service:
           - name: order-service
-            port: 5001
           - name: kitchen-service
-            port: 5002
           - name: bar-service
-            port: 5003
     steps:
       - uses: actions/checkout@v4
 
@@ -45,3 +42,29 @@ jobs:
           tags: |
             ghcr.io/${{ steps.owner.outputs.value }}/dapr-food-demo-${{ matrix.service.name }}:latest
             ghcr.io/${{ steps.owner.outputs.value }}/dapr-food-demo-${{ matrix.service.name }}:${{ github.sha }}
+
+  update-manifests:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lowercase owner
+        id: owner
+        run: echo "value=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
+      - name: Update image tags in services.yaml
+        run: |
+          sed -i "s|ghcr.io/${{ steps.owner.outputs.value }}/dapr-food-demo-order-service:.*|ghcr.io/${{ steps.owner.outputs.value }}/dapr-food-demo-order-service:${{ github.sha }}|" deploy/services.yaml
+          sed -i "s|ghcr.io/${{ steps.owner.outputs.value }}/dapr-food-demo-kitchen-service:.*|ghcr.io/${{ steps.owner.outputs.value }}/dapr-food-demo-kitchen-service:${{ github.sha }}|" deploy/services.yaml
+          sed -i "s|ghcr.io/${{ steps.owner.outputs.value }}/dapr-food-demo-bar-service:.*|ghcr.io/${{ steps.owner.outputs.value }}/dapr-food-demo-bar-service:${{ github.sha }}|" deploy/services.yaml
+
+      - name: Commit updated manifests
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add deploy/services.yaml
+          git diff --cached --quiet || git commit -m "Update image tags to ${{ github.sha }}"
+          git push
