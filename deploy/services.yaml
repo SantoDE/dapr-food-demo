@@ -12,7 +12,7 @@ spec:
         dapr.io/app-port: "5001"
         dapr.io/app-protocol: "http"
         dapr.io/config: "dapr-config"
-        dapr.io/metrics-port: "9091"
+        dapr.io/enable-metrics: "false"
     spec:
       containers:
         - image: ghcr.io/santode/dapr-food-demo-order-service:4684e9506748a464694e006ea8fd2ca753b07b7e
