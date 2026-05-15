@@ -8,7 +8,7 @@ spec:
   version: v1
   metadata:
     - name: redisHost
-      value: redis-master.redis.svc.cluster.local:6379
+      value: redis-master.redis.svc.clusterset.local:6379
     - name: enableTLS
       value: "false"
 scopes:
@@ -26,7 +26,7 @@ spec:
   version: v1
   metadata:
     - name: redisHost
-      value: redis-master.redis.svc.cluster.local:6379
+      value: redis-master.redis.svc.clusterset.local:6379
     - name: actorStateStore
       value: "true"
 ---
