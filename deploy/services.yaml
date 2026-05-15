@@ -15,7 +15,7 @@ spec:
         dapr.io/metrics-port: "9092"
     spec:
       containers:
-        - image: ghcr.io/santode/dapr-food-demo-order-service:665f8a30f93e15a8be0350c87c83ad772e9bcbf0
+        - image: ghcr.io/santode/dapr-food-demo-order-service:577d859ce21c61b354c233e51089c4efc6d9956b
           ports:
             - containerPort: 5001
               name: http1
@@ -41,7 +41,7 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
-        - image: ghcr.io/santode/dapr-food-demo-kitchen-service:665f8a30f93e15a8be0350c87c83ad772e9bcbf0
+        - image: ghcr.io/santode/dapr-food-demo-kitchen-service:577d859ce21c61b354c233e51089c4efc6d9956b
           ports:
             - containerPort: 5002
               name: http1
@@ -71,7 +71,7 @@ spec:
         autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
-        - image: ghcr.io/santode/dapr-food-demo-bar-service:665f8a30f93e15a8be0350c87c83ad772e9bcbf0
+        - image: ghcr.io/santode/dapr-food-demo-bar-service:577d859ce21c61b354c233e51089c4efc6d9956b
           ports:
             - containerPort: 5003
               name: http1
