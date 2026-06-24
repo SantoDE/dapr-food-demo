@@ -1,50 +1,71 @@
 version: v2beta1
 name: dapr-food-demo
 
-# Define container images to build with Cloud Native Buildpacks
 images:
   order-service:
-    image: dapr-food-demo/order-service
+    image: localhost:5111/dapr-food-demo/order-service
     tags:
       - latest
-    custom:
-      command: ./build-with-pack.sh order-service order-service
+    context: ./order-service
+    dockerfile: ./order-service/Dockerfile
 
   kitchen-service:
-    image: dapr-food-demo/kitchen-service
+    image: localhost:5111/dapr-food-demo/kitchen-service
     tags:
       - latest
-    custom:
-      command: ./build-with-pack.sh kitchen-service kitchen-service
+    context: ./kitchen-service
+    dockerfile: ./kitchen-service/Dockerfile
 
   bar-service:
-    image: dapr-food-demo/bar-service
+    image: localhost:5111/dapr-food-demo/bar-service
     tags:
       - latest
-    custom:
-      command: ./build-with-pack.sh bar-service bar-service
+    context: ./bar-service
+    dockerfile: ./bar-service/Dockerfile
 
-# Hooks to load images into kind cluster after building
-hooks:
-  - name: load-images-to-kind
-    events: ["after:build"]
-    command: |
-      echo "Loading images into kind cluster..."
-      kind load docker-image dapr-food-demo/order-service --name clc-2025 || true
-      kind load docker-image dapr-food-demo/kitchen-service --name clc-2025 || true
-      kind load docker-image dapr-food-demo/bar-service --name clc-2025 || true
-      echo "Images loaded into kind cluster"
-
-# Define deployments
 deployments:
-  # Deploy Dapr components
   dapr-components:
     kubectl:
       manifests:
         - components-k8s/
 
-  # Deploy services
   services:
     kubectl:
       manifests:
         - k8s/
+
+dev:
+  order-service:
+    imageSelector: k3d-registry.localhost:5111/dapr-food-demo/order-service
+    command: ["python", "app.py"]
+    sync:
+      - path: ./order-service:/app
+        excludePaths:
+          - "**/__pycache__"
+          - "**/*.pyc"
+        onUpload:
+          restartContainer: true
+    ports:
+      - port: "5001"
+
+  kitchen-service:
+    imageSelector: k3d-registry.localhost:5111/dapr-food-demo/kitchen-service
+    command: ["python", "app.py"]
+    sync:
+      - path: ./kitchen-service:/app
+        excludePaths:
+          - "**/__pycache__"
+          - "**/*.pyc"
+        onUpload:
+          restartContainer: true
+
+  bar-service:
+    imageSelector: k3d-registry.localhost:5111/dapr-food-demo/bar-service
+    command: ["python", "app.py"]
+    sync:
+      - path: ./bar-service:/app
+        excludePaths:
+          - "**/__pycache__"
+          - "**/*.pyc"
+        onUpload:
+          restartContainer: true

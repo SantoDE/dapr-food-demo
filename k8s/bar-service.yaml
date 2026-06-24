@@ -23,8 +23,8 @@ spec:
     spec:
       containers:
       - name: bar-service
-        image: dapr-food-demo/bar-service:latest
-        imagePullPolicy: IfNotPresent
+        image: k3d-registry.localhost:5111/dapr-food-demo/bar-service:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 5003
           name: http

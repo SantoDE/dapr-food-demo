@@ -1,5 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
+
+CLUSTER_NAME="cns-munich"
+REGISTRY_NAME="registry.localhost"
+REGISTRY_PORT="5111"
 
 echo "🍔🍺 Burger & Beer Order System - Kubernetes Deployment"
 echo "========================================================"
@@ -10,63 +14,55 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-# Check if DevSpace is installed
-if ! command -v devspace &> /dev/null; then
-    echo -e "${RED}❌ DevSpace CLI not found!${NC}"
-    echo ""
-    echo "Please install DevSpace:"
-    echo "  macOS:   brew install devspace"
-    echo "  Linux:   curl -s -L 'https://github.com/loft-sh/devspace/releases/latest' | sed -nE 's!.*\"([^\"]*devspace-linux-amd64)\".*!https://github.com\1!p' | xargs -n 1 curl -L -o devspace && chmod +x devspace && sudo mv devspace /usr/local/bin"
-    echo ""
-    echo "Or visit: https://devspace.sh/cli/docs/getting-started/installation"
-    exit 1
+# Check required tools
+for cmd in devspace kubectl k3d dapr; do
+    if ! command -v $cmd &> /dev/null; then
+        echo -e "${RED}❌ $cmd not found! Please install it first.${NC}"
+        exit 1
+    fi
+done
+echo -e "${GREEN}✅ All required tools found${NC}"
+
+# Ensure k3d registry exists
+echo ""
+echo "Checking k3d registry..."
+if ! k3d registry list | grep -q "$REGISTRY_NAME"; then
+    echo -e "${YELLOW}⚠️  Registry not found, creating...${NC}"
+    k3d registry create "$REGISTRY_NAME" --port "$REGISTRY_PORT"
+    echo -e "${GREEN}✅ Registry created at k3d-${REGISTRY_NAME}:${REGISTRY_PORT}${NC}"
+else
+    echo -e "${GREEN}✅ Registry k3d-${REGISTRY_NAME}:${REGISTRY_PORT} exists${NC}"
 fi
 
-# Check if kubectl is available
-if ! command -v kubectl &> /dev/null; then
-    echo -e "${RED}❌ kubectl not found!${NC}"
-    echo "Please install kubectl and configure access to a Kubernetes cluster."
-    exit 1
+# Ensure k3d cluster exists and is connected to registry
+echo ""
+echo "Checking k3d cluster..."
+if ! k3d cluster list | grep -q "$CLUSTER_NAME"; then
+    echo -e "${YELLOW}⚠️  Cluster '${CLUSTER_NAME}' not found, creating...${NC}"
+    VM_IP=$(ip route get 1.1.1.1 2>/dev/null | awk '/src/{for(i=1;i<=NF;i++) if ($i=="src") print $(i+1)}')
+    k3d cluster create "$CLUSTER_NAME" \
+        --registry-use "k3d-${REGISTRY_NAME}:${REGISTRY_PORT}" \
+        --port "80:80@loadbalancer" \
+        ${VM_IP:+--k3s-arg "--node-external-ip=${VM_IP}@server:0"} \
+        --wait
+    echo -e "${GREEN}✅ Cluster '${CLUSTER_NAME}' created (external IP: ${VM_IP:-unknown})${NC}"
+else
+    echo -e "${GREEN}✅ Cluster '${CLUSTER_NAME}' exists${NC}"
 fi
-
-# Check if we can connect to a cluster
-if ! kubectl cluster-info &> /dev/null; then
-    echo -e "${RED}❌ Cannot connect to Kubernetes cluster!${NC}"
-    echo ""
-    echo "Please ensure you have a Kubernetes cluster running:"
-    echo "  - Docker Desktop (enable in settings)"
-    echo "  - minikube start"
-    echo "  - kind create cluster"
-    exit 1
-fi
-
-echo -e "${GREEN}✅ DevSpace CLI found${NC}"
-echo -e "${GREEN}✅ kubectl configured${NC}"
 
 # Check if Dapr is installed on k8s
 echo ""
 echo "Checking Dapr installation on Kubernetes..."
 if ! kubectl get namespace dapr-system &> /dev/null; then
-    echo -e "${YELLOW}⚠️  Dapr not found on Kubernetes cluster${NC}"
-    echo ""
-    echo "Installing Dapr on Kubernetes..."
-
-    if ! command -v dapr &> /dev/null; then
-        echo -e "${RED}❌ Dapr CLI not found!${NC}"
-        echo "Please install Dapr CLI first:"
-        echo "  https://docs.dapr.io/getting-started/install-dapr-cli/"
-        exit 1
-    fi
-
+    echo -e "${YELLOW}⚠️  Dapr not found, installing...${NC}"
     dapr init -k --dev
-    echo -e "${GREEN}✅ Dapr installed on Kubernetes${NC}"
+    echo -e "${GREEN}✅ Dapr installed${NC}"
 else
-    echo -e "${GREEN}✅ Dapr found on Kubernetes${NC}"
+    echo -e "${GREEN}✅ Dapr found${NC}"
 fi
 
-# Get current context
 CONTEXT=$(kubectl config current-context)
 echo ""
 echo -e "${BLUE}Kubernetes Context: ${CONTEXT}${NC}"
@@ -77,37 +73,30 @@ echo "Choose deployment mode:"
 echo "  1) Development mode with hot-reload (devspace dev)"
 echo "  2) Deploy only (devspace deploy)"
 echo ""
-read -p "Enter choice [1-2] (default: 1): " CHOICE
-CHOICE=${CHOICE:-1}
+read -p "Enter choice [1-2] (default: 2): " CHOICE
+CHOICE=${CHOICE:-2}
 
 case $CHOICE in
     1)
         echo ""
-        echo -e "${GREEN}Starting development mode with Cloud Native Buildpacks...${NC}"
-        echo ""
-        echo "This will:"
-        echo "  - Build images using Cloud Native Buildpacks (no Dockerfile needed!)"
-        echo "  - Deploy all services to Kubernetes with Dapr sidecars"
-        echo "  - Set up port forwarding (localhost:5001)"
-        echo "  - Watch for code changes and auto-reload"
-        echo "  - Stream logs from all services"
-        echo ""
+        echo -e "${GREEN}Starting development mode...${NC}"
         echo "Press Ctrl+C to stop"
         echo ""
-        sleep 2
         devspace dev
         ;;
     2)
         echo ""
-        echo -e "${GREEN}Deploying to Kubernetes with Buildpacks...${NC}"
+        echo -e "${GREEN}Deploying to Kubernetes...${NC}"
         devspace deploy
         echo ""
         echo -e "${GREEN}✅ Deployment complete!${NC}"
         echo ""
-        echo "To access the application, run:"
-        echo "  kubectl port-forward svc/order-service 5001:80"
-        echo ""
-        echo "Then open: http://localhost:5001"
+        VM_IP=$(ip route get 1.1.1.1 2>/dev/null | awk '{print $7; exit}')
+        echo "Access the application at:"
+        echo "  From this VM: http://localhost"
+        if [ -n "$VM_IP" ]; then
+            echo "  From your Mac: http://${VM_IP}"
+        fi
         ;;
     *)
         echo -e "${RED}Invalid choice${NC}"

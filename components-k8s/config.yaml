@@ -9,7 +9,7 @@ spec:
     # Using OTLP for OpenTelemetry integration
     # Note: Update this if you deploy Jaeger/OTEL collector in k8s
     otel:
-      endpointAddress: "http://jaeger.default.svc.cluster.local:4318"
+      endpointAddress: "jaeger.default.svc.cluster.local:4318"
       isSecure: false
       protocol: http
   metric:

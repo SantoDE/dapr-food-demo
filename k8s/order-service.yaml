@@ -23,8 +23,8 @@ spec:
     spec:
       containers:
       - name: order-service
-        image: dapr-food-demo/order-service:latest
-        imagePullPolicy: IfNotPresent
+        image: k3d-registry.localhost:5111/dapr-food-demo/order-service:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 5001
           name: http
