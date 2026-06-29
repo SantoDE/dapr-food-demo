@@ -41,11 +41,9 @@ echo ""
 echo "Checking k3d cluster..."
 if ! k3d cluster list | grep -q "$CLUSTER_NAME"; then
     echo -e "${YELLOW}⚠️  Cluster '${CLUSTER_NAME}' not found, creating...${NC}"
-    VM_IP=$(ip route get 1.1.1.1 2>/dev/null | awk '/src/{for(i=1;i<=NF;i++) if ($i=="src") print $(i+1)}')
     k3d cluster create "$CLUSTER_NAME" \
         --registry-use "k3d-${REGISTRY_NAME}:${REGISTRY_PORT}" \
         --port "80:80@loadbalancer" \
-        ${VM_IP:+--k3s-arg "--node-external-ip=${VM_IP}@server:0"} \
         --wait
     echo -e "${GREEN}✅ Cluster '${CLUSTER_NAME}' created (external IP: ${VM_IP:-unknown})${NC}"
 else
